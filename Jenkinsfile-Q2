@@ -27,7 +27,7 @@ pipeline {
     }
 
     post {
-      fails {
+      always {
         sh 'echo archiving test reports'
       }
       success {
