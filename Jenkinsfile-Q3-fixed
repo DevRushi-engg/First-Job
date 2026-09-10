@@ -1,0 +1,42 @@
+pipeline {
+  agent any
+
+  stages {
+    stage ('Checkout') {                    // Bug -1 : Moved the stage ('Checkout')  inside Stages {}
+      steps {
+        git url: 'https://github.com/example/app.git'     // Bug - 2 : symtax issue use checkout scm - it will check the source code
+      }
+    }
+
+    stage ('Build') {
+      steps {
+        sh 'npm install'
+        sh 'npm test'
+      }
+    }
+
+    stage ('Parallel Tests') {
+      parallel {
+        stage ('Unit Tests') {            // Bug - 3 curly bracket was missing at stage ('Unit Tests')
+          steps { 
+            sh 'npm test' 
+          }
+        }
+
+        stage ('Lint') {                  
+          steps {
+            sh 'npm run lint'
+          }
+        }
+      }
+    }                                    // Bug - 4 stage ('Parallel Tests') had a structural problem braces matching not complete the stage block
+
+    post {                               // Bug - 5 the post must be outside the stages block it was inside the stage block.
+      always {
+        sh 'rm -rf workspace/*'
+      }
+    }
+  }
+}
+        
+    
