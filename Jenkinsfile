@@ -1,9 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage ('Stage 1') {
+        stage('Hello') {
             steps {
-                sh 'echo hello'
+                echo 'Jenkins pipeline is alive'
+                sh 'pwd'
+                sh 'whoami'
+                sh 'date'
             }
         }
     }
