@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    parametes {
+    parameters {
         choice(name: 'ENVIRONMENT', choices: ['staging', 'production'], description: 'Target')
     }
     stages {
@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo Deploying to ${params.ENVIRONMENT}'
+                sh "echo Deploying to ${params.ENVIRONMENT}"
             }
         }
     }
