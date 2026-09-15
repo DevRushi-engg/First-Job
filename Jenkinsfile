@@ -12,7 +12,7 @@ pipeline {
             }
         }
         stage('Deploy') {
-            stpes {
+            steps {
                 sh 'echo Deploying to production'
             }
         }
