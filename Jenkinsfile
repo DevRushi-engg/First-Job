@@ -18,6 +18,11 @@ pipeline {
                 }
             }
         }
+        stage('Approve') {
+            steps {
+                input message: 'Deploy to production'
+            }
+        }
         
         stage('Deploy') {
             steps {
