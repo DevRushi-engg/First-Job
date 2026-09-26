@@ -4,6 +4,11 @@ pipeline {
         choice(name: 'ENVIRONMENT', choices: ['staging', 'production'], description: 'Target')
     }
     stages {
+        stage('Checkout') {
+            steps { 
+                checkout scm
+            }
+        }
         stage('Test') {
             parallel {
                 stage('Unit') {
