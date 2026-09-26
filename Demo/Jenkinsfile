@@ -18,8 +18,12 @@ pipeline {
             sh 'echo Integration test'
           }
         }
+        stage('Approve') {
+          steps {
+            input message: 'Deploy to production?'
+          }
+        }
       }
     }
   }
 }
-    
