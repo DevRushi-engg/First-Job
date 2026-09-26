@@ -34,13 +34,13 @@ pipeline {
                 sh "echo Deploying to ${params.ENVIRONMENT}"
             }
         }
-        post {
-            success {
-                echo 'Pipeline succeeded'
-            }
-            failure {
-                echo 'Pipeline failed'
-            }
+    }
+    post {
+        success {
+            echo 'Pipeline succeeded'
+        }
+        failure {
+            echo 'Pipeline failed'
         }
     }
 }
